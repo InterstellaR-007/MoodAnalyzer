@@ -38,5 +38,37 @@ namespace MoodAnalyzerTest1
                 Assert.AreEqual(MoodAnalyserCustomException.ExceptionType.ENTERED_EMPTY, e.type);
             }
         }
+        [TestMethod]
+        public void TestMethod3()
+        {
+            string expected_SadMood = "sad";
+            string expected_HappyMood = "happy";
+            string input_Message = null;
+            object expected_Object = new MoodAnalyzerApp(input_Message);
+            object actual_Object = MoodAnalyserFactory.Create_Mood_Analyser_Object();
+            Assert.AreEqual(expected_Object.GetType(), actual_Object.GetType());
+            //expected_Object.Equals(actual_Object);
+
+        }
+        [TestMethod]
+        public void TestMethod4()
+        {
+            string expected_SadMood = "sad";
+            string expected_HappyMood = "happy";
+            string input_Message = null;
+            string class_Name = "WrongMoodAnalyzerApp";
+            try
+            {
+                object expected_Object = new MoodAnalyzerApp(input_Message);
+                object actual_Object = MoodAnalyserFactory.Create_Mood_Analyser_Object(class_Name);
+            }
+            catch(MoodAnalyserCustomException e) 
+            { 
+                Assert.AreEqual(MoodAnalyserCustomException.ExceptionType.NO_SUCH_CLASS,e.type);
+            //expected_Object.Equals(actual_Object);
+            }
+
+        }
+
     }
 }

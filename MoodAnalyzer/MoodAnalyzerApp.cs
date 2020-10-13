@@ -8,6 +8,11 @@ namespace MoodAnalyzer
     public class MoodAnalyzerApp
     {
         private String message;
+
+        public MoodAnalyzerApp()
+        {
+        }
+
         public MoodAnalyzerApp(String message)
         {
             this.message = message;
