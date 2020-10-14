@@ -51,21 +51,43 @@ namespace MoodAnalyzerTest1
 
         }
         [TestMethod]
-        public void TestMethod4()
+        public void GivenImproperClassName_ReturnMoodAnalyserObject_UsingParameterizedConstructor()
         {
             string expected_SadMood = "sad";
             string expected_HappyMood = "happy";
             string input_Message = null;
             string class_Name = "WrongMoodAnalyzerApp";
+            string constructor_Name = "MoodAnalyzerApp";
             try
             {
                 object expected_Object = new MoodAnalyzerApp(input_Message);
-                object actual_Object = MoodAnalyserFactory.Create_Mood_Analyser_Object(class_Name);
+                object actual_Object = MoodAnalyserFactory.Create_Mood_Analyser_Object(class_Name,constructor_Name);
             }
             catch(MoodAnalyserCustomException e) 
             { 
                 Assert.AreEqual(MoodAnalyserCustomException.ExceptionType.NO_SUCH_CLASS,e.type);
             //expected_Object.Equals(actual_Object);
+            }
+
+        }
+
+        [TestMethod]
+        public void GivenImproperConstructorName_ReturnMoodAnalyserObject_UsingParameterizedConstructor()
+        {
+            string expected_SadMood = "sad";
+            string expected_HappyMood = "happy";
+            string input_Message = null;
+            string class_Name = "MoodAnalyzerApp";
+            string constructor_Name = "WrongMoodAnalyzerApp";
+            try
+            {
+                object expected_Object = new MoodAnalyzerApp(input_Message);
+                object actual_Object = MoodAnalyserFactory.Create_Mood_Analyser_Object(class_Name, constructor_Name);
+            }
+            catch (MoodAnalyserCustomException e)
+            {
+                Assert.AreEqual(MoodAnalyserCustomException.ExceptionType.NO_SUCH_METHODS, e.type);
+                //expected_Object.Equals(actual_Object);
             }
 
         }

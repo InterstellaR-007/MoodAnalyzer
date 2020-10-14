@@ -13,21 +13,25 @@ namespace MoodAnalyzer
             MoodAnalyzerApp new_Obj = (MoodAnalyzerApp)Activator.CreateInstance(type);
             return new_Obj;
         }
-        public static object Create_Mood_Analyser_Object(string class_Name)
+        public static object Create_Mood_Analyser_Object(string class_Name,string constructor_Name)
         {
 
-            if (class_Name.Equals("MoodAnalyzerApp")) 
-            {
+            Type type = Type.GetType("MoodAnalyzer." + class_Name);
+            //ConstructorInfo get_Constructor_Name = type.GetConstructor();
 
-                    Type type = Type.GetType("MoodAnalyzer." + class_Name);
+            if (class_Name.Equals(type.Name) && class_Name.Equals(constructor_Name)) 
+            {
                     MoodAnalyzerApp new_Obj = (MoodAnalyzerApp)Activator.CreateInstance(type);
                     return new_Obj;
             }
-            else
+            if(class_Name.Equals(type.Name) && !class_Name.Equals(constructor_Name))
             {
-                throw new MoodAnalyserCustomException(MoodAnalyserCustomException.ExceptionType.NO_SUCH_CLASS, "No such Class found");
+                throw new MoodAnalyserCustomException(MoodAnalyserCustomException.ExceptionType.NO_SUCH_METHODS, "Wrong Custructor Name Entered");
             }
-            
+            else
+                throw new MoodAnalyserCustomException(MoodAnalyserCustomException.ExceptionType.NO_SUCH_CLASS, "Wrong Class Name Entered ");
+
+
         }
     }
 }
