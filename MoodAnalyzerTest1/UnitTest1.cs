@@ -92,5 +92,60 @@ namespace MoodAnalyzerTest1
 
         }
 
+        [TestMethod]
+        public void GivenProperParamter_ReturnMoodAnalyserObject_UsingMessageParamter()
+        {
+            
+            string input_Message = "I am kinda Sad";
+            string class_Name = "MoodAnalyzerApp";
+            string constructor_Name = "MoodAnalyzerApp";
+            
+            object expected_Object = new MoodAnalyzerApp(input_Message);
+            object actual_Object = MoodAnalyserFactory.Create_Mood_Analyser_Object_With_Parameter(class_Name, constructor_Name,input_Message);
+            
+            Assert.AreEqual(actual_Object.GetType(),expected_Object.GetType());
+               
+
+        }
+
+        [TestMethod]
+        public void GivenWrongClassName_ReturnMoodAnalyserObject_UsingMessageParamter()
+        {
+
+            string input_Message = "I am kinda Sad";
+            string class_Name = "WrongMoodAnalyzerApp";
+            string constructor_Name = "MoodAnalyzerApp";
+            try
+            {
+
+                object expected_Object = new MoodAnalyzerApp(input_Message);
+                object actual_Object = MoodAnalyserFactory.Create_Mood_Analyser_Object_With_Parameter(class_Name, constructor_Name, input_Message);
+            }
+            catch (MoodAnalyserCustomException e)
+            {
+                Assert.AreEqual(MoodAnalyserCustomException.ExceptionType.NO_SUCH_CLASS, e.type);
+            }
+        }
+
+        [TestMethod]
+        public void GivenWrongConstructorName_ReturnMoodAnalyserObject_UsingMessageParamter()
+        {
+
+            string input_Message = "I am kinda Sad";
+            string class_Name = "MoodAnalyzerApp";
+            string constructor_Name = "WrongMoodAnalyzerApp";
+            try
+            {
+
+                object expected_Object = new MoodAnalyzerApp(input_Message);
+                object actual_Object = MoodAnalyserFactory.Create_Mood_Analyser_Object_With_Parameter(class_Name, constructor_Name, input_Message);
+            }
+            catch (MoodAnalyserCustomException e)
+            {
+                Assert.AreEqual(MoodAnalyserCustomException.ExceptionType.NO_SUCH_METHODS, e.type);
+            }
+        }
+
+
     }
 }
