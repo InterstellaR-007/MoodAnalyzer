@@ -45,7 +45,7 @@ namespace MoodAnalyzerTest1
             string expected_HappyMood = "happy";
             string input_Message = null;
             object expected_Object = new MoodAnalyzerApp(input_Message);
-            object actual_Object = MoodAnalyserFactory.Create_Mood_Analyser_Object();
+            object actual_Object = MoodAnalyzerFactory.Create_Mood_Analyser_Object();
             Assert.AreEqual(expected_Object.GetType(), actual_Object.GetType());
             //expected_Object.Equals(actual_Object);
 
@@ -53,15 +53,14 @@ namespace MoodAnalyzerTest1
         [TestMethod]
         public void GivenImproperClassName_ReturnMoodAnalyserObject_UsingParameterizedConstructor()
         {
-            string expected_SadMood = "sad";
-            string expected_HappyMood = "happy";
+            
             string input_Message = null;
             string class_Name = "WrongMoodAnalyzerApp";
             string constructor_Name = "MoodAnalyzerApp";
             try
             {
                 object expected_Object = new MoodAnalyzerApp(input_Message);
-                object actual_Object = MoodAnalyserFactory.Create_Mood_Analyser_Object(class_Name,constructor_Name);
+                object actual_Object = MoodAnalyzerFactory.Create_Mood_Analyser_Object(class_Name,constructor_Name);
             }
             catch(MoodAnalyserCustomException e) 
             { 
@@ -74,15 +73,14 @@ namespace MoodAnalyzerTest1
         [TestMethod]
         public void GivenImproperConstructorName_ReturnMoodAnalyserObject_UsingParameterizedConstructor()
         {
-            string expected_SadMood = "sad";
-            string expected_HappyMood = "happy";
+            
             string input_Message = null;
             string class_Name = "MoodAnalyzerApp";
             string constructor_Name = "WrongMoodAnalyzerApp";
             try
             {
                 object expected_Object = new MoodAnalyzerApp(input_Message);
-                object actual_Object = MoodAnalyserFactory.Create_Mood_Analyser_Object(class_Name, constructor_Name);
+                object actual_Object = MoodAnalyzerFactory.Create_Mood_Analyser_Object(class_Name, constructor_Name);
             }
             catch (MoodAnalyserCustomException e)
             {
@@ -101,7 +99,7 @@ namespace MoodAnalyzerTest1
             string constructor_Name = "MoodAnalyzerApp";
             
             object expected_Object = new MoodAnalyzerApp(input_Message);
-            object actual_Object = MoodAnalyserFactory.Create_Mood_Analyser_Object_With_Parameter(class_Name, constructor_Name,input_Message);
+            object actual_Object = MoodAnalyzerFactory.Create_Mood_Analyser_Object_With_Parameter(class_Name, constructor_Name,input_Message);
             
             Assert.AreEqual(actual_Object.GetType(),expected_Object.GetType());
                
@@ -119,7 +117,7 @@ namespace MoodAnalyzerTest1
             {
 
                 object expected_Object = new MoodAnalyzerApp(input_Message);
-                object actual_Object = MoodAnalyserFactory.Create_Mood_Analyser_Object_With_Parameter(class_Name, constructor_Name, input_Message);
+                object actual_Object = MoodAnalyzerFactory.Create_Mood_Analyser_Object_With_Parameter(class_Name, constructor_Name, input_Message);
             }
             catch (MoodAnalyserCustomException e)
             {
@@ -138,7 +136,7 @@ namespace MoodAnalyzerTest1
             {
 
                 object expected_Object = new MoodAnalyzerApp(input_Message);
-                object actual_Object = MoodAnalyserFactory.Create_Mood_Analyser_Object_With_Parameter(class_Name, constructor_Name, input_Message);
+                object actual_Object = MoodAnalyzerFactory.Create_Mood_Analyser_Object_With_Parameter(class_Name, constructor_Name, input_Message);
             }
             catch (MoodAnalyserCustomException e)
             {

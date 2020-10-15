@@ -5,7 +5,7 @@ using System.Reflection;
 
 namespace MoodAnalyzer
 {
-    public class MoodAnalyserFactory
+    public class MoodAnalyzerFactory
     {
         public static object Create_Mood_Analyser_Object()
         {
@@ -45,7 +45,8 @@ namespace MoodAnalyzer
             {
 
                 Type type = Type.GetType("MoodAnalyzer." + class_Name);
-                //ConstructorInfo get_Constructor_Name = type.GetConstructor();
+                //ConstructorInfo get_Constructor_Name = type.GetConstructor(new[] { typeof(string)});
+                
 
                 if (class_Name.Equals(type.Name) && class_Name.Equals(constructor_Name))
                 {
