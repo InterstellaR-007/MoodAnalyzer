@@ -144,6 +144,63 @@ namespace MoodAnalyzerTest1
             }
         }
 
+        [TestMethod]
+        public void GivenMoodAnalyserObject_InvokeAnalyzeMoodInfo_UsingMessageParamter()
+        {
+            string expected = "sad";
+            string actual = "";
+            string input_Message = "I am kinda sad";
+            string class_Name = "MoodAnalyzerApp";
+            string method_Name = "Analyse_Mood";
+            string constructor_Name = "MoodAnalyzerApp";
+            try
+            {
+
+                actual = MoodAnalyzerFactory.InvokeAnalyseMood(input_Message, method_Name);
+                Assert.AreEqual(expected, actual);
+            }
+            catch (MoodAnalyserCustomException e)
+            {
+                Assert.AreEqual(MoodAnalyserCustomException.ExceptionType.NO_SUCH_METHODS, e.type);
+            }
+        }
+        public void GivenHappyMessage_InvokeAnalyzeMoodMethod_UsingMessageParamter()
+        {
+            string expected = "Happy";
+            string actual = "";
+            string input_Message = "I am kinda Happy";
+            string class_Name = "MoodAnalyzerApp";
+            string method_Name = "Analyse_Mood";
+            string constructor_Name = "MoodAnalyzerApp";
+            try
+            {
+                actual = MoodAnalyzerFactory.InvokeAnalyseMood(input_Message, method_Name);
+                Assert.AreEqual(expected, actual);
+            }
+            catch (MoodAnalyserCustomException e)
+            {
+                Assert.AreEqual(MoodAnalyserCustomException.ExceptionType.NO_SUCH_METHODS, e.type);
+            }
+        }
+        public void GivenHappyMessage_InvokeAnalyzeMoodMethod_UsingWrongMethodName()
+        {
+            string expected = "Happy";
+            string actual = "";
+            string input_Message = "I am kinda Happy";
+            string class_Name = "MoodAnalyzerApp";
+            string method_Name = "WrongAnalyse_Mood";
+            string constructor_Name = "MoodAnalyzerApp";
+            try
+            {
+                actual = MoodAnalyzerFactory.InvokeAnalyseMood(input_Message, method_Name);
+                Assert.AreEqual(expected, actual);
+            }
+            catch (MoodAnalyserCustomException e)
+            {
+                Assert.AreEqual(MoodAnalyserCustomException.ExceptionType.NO_SUCH_METHODS, e.type);
+            }
+        }
+
 
     }
 }

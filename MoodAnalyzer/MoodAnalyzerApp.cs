@@ -22,11 +22,11 @@ namespace MoodAnalyzer
         {
             try
             {
-                if (this.message.Contains("sad"))
+                if (message.Contains("sad"))
                 {
                     return "sad";
                 }
-                if (this.message.Contains(string.Empty))
+                if (message==string.Empty)
                 {
                     throw new MoodAnalyserCustomException(MoodAnalyserCustomException.ExceptionType.ENTERED_EMPTY, "Input is Empty");
                 }

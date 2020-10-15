@@ -13,6 +13,22 @@ namespace MoodAnalyzer
             MoodAnalyzerApp new_Obj = (MoodAnalyzerApp)Activator.CreateInstance(type);
             return new_Obj;
         }
+
+        public static string InvokeAnalyseMood(string message,string methodName)
+        {
+            try
+            {
+                Type type = Type.GetType("MoodAnalyzer.MoodAnalyzerApp");
+                object moodAnalyseObj = MoodAnalyzerFactory.Create_Mood_Analyser_Object_With_Parameter("MoodAnalyzerApp", "MoodAnalyzerApp", message);
+                MethodInfo analyseMoodInfo = type.GetMethod(methodName);
+                object mood = analyseMoodInfo.Invoke(moodAnalyseObj, null);
+                return mood.ToString();
+            }
+            catch (NullReferenceException)
+            {
+                throw new MoodAnalyserCustomException(MoodAnalyserCustomException.ExceptionType.NO_SUCH_METHODS, "Method not found");
+            }
+        }
         public static object Create_Mood_Analyser_Object(string class_Name,string constructor_Name)
         {
             try
