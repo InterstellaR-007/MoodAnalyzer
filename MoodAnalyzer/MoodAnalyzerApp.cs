@@ -5,19 +5,36 @@ using System.Text;
 
 namespace MoodAnalyzer
 {
+    /// <summary>
+    /// Mood Analyzer Application
+    /// </summary>
     public class MoodAnalyzerApp
     {
-        private String message;
+        //String member
+        public String message;
 
         public MoodAnalyzerApp()
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MoodAnalyzerApp"/> class.
+        /// </summary>
+        /// <param name="message">The message.</param>
         public MoodAnalyzerApp(String message)
         {
             this.message = message;
         }
 
+        /// <summary>
+        /// Analyses the mood.
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="MoodAnalyserCustomException">
+        /// Input is Empty
+        /// or
+        /// Input is NULL
+        /// </exception>
         public String Analyse_Mood()
         {
             try

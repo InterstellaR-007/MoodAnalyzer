@@ -3,14 +3,21 @@ using MoodAnalyzer;
 
 namespace MoodAnalyzerTest1
 {
+    /// <summary>
+    /// Unit Test Class for Mood Analyzer Project
+    /// </summary>
     [TestClass]
     public class UnitTest1
     {
+        /// <summary>
+        /// Givens the null input throws entered null exception when mood analyzer application is invoked.
+        /// </summary>
         [TestMethod]
-        public void TestMethod1()
+        public void GivenNullInput_ThrowsEnteredNullException_WhenMoodAnalyzerAppIsInvoked()
         {
             string expected_SadMood = "sad";
             string expected_HappyMood = "happy";
+
             string input_Message = null;
             try
             {
@@ -22,8 +29,11 @@ namespace MoodAnalyzerTest1
                 Assert.AreEqual(MoodAnalyserCustomException.ExceptionType.ENTERED_NULL, e.type);
             }
         }
+        /// <summary>
+        /// Givens the empty input throws entered empty exception when mood analyzer application is invoked.
+        /// </summary>
         [TestMethod]
-        public void TestMethod2()
+        public void GivenEmptyInput_ThrowsEnteredEmptyException_WhenMoodAnalyzerAppIsInvoked()
         {
             string expected_SadMood = "sad";
             string expected_HappyMood = "happy";
@@ -38,18 +48,10 @@ namespace MoodAnalyzerTest1
                 Assert.AreEqual(MoodAnalyserCustomException.ExceptionType.ENTERED_EMPTY, e.type);
             }
         }
-        [TestMethod]
-        public void TestMethod3()
-        {
-            string expected_SadMood = "sad";
-            string expected_HappyMood = "happy";
-            string input_Message = null;
-            object expected_Object = new MoodAnalyzerApp(input_Message);
-            object actual_Object = MoodAnalyzerFactory.Create_Mood_Analyser_Object();
-            Assert.AreEqual(expected_Object.GetType(), actual_Object.GetType());
-            //expected_Object.Equals(actual_Object);
 
-        }
+        /// <summary>
+        /// Givens the improper class name return mood analyser object using parameterized constructor.
+        /// </summary>
         [TestMethod]
         public void GivenImproperClassName_ReturnMoodAnalyserObject_UsingParameterizedConstructor()
         {
@@ -70,6 +72,9 @@ namespace MoodAnalyzerTest1
 
         }
 
+        /// <summary>
+        /// Givens the improper constructor name return mood analyser object using parameterized constructor.
+        /// </summary>
         [TestMethod]
         public void GivenImproperConstructorName_ReturnMoodAnalyserObject_UsingParameterizedConstructor()
         {
@@ -90,6 +95,9 @@ namespace MoodAnalyzerTest1
 
         }
 
+        /// <summary>
+        /// Givens the proper paramter return mood analyser object using message paramter.
+        /// </summary>
         [TestMethod]
         public void GivenProperParamter_ReturnMoodAnalyserObject_UsingMessageParamter()
         {
@@ -106,6 +114,9 @@ namespace MoodAnalyzerTest1
 
         }
 
+        /// <summary>
+        /// Givens the wrong class name return mood analyser object using message paramter.
+        /// </summary>
         [TestMethod]
         public void GivenWrongClassName_ReturnMoodAnalyserObject_UsingMessageParamter()
         {
@@ -125,6 +136,9 @@ namespace MoodAnalyzerTest1
             }
         }
 
+        /// <summary>
+        /// Givens the wrong constructor name return mood analyser object using message paramter.
+        /// </summary>
         [TestMethod]
         public void GivenWrongConstructorName_ReturnMoodAnalyserObject_UsingMessageParamter()
         {
@@ -144,6 +158,9 @@ namespace MoodAnalyzerTest1
             }
         }
 
+        /// <summary>
+        /// Givens the mood analyser object invoke analyze mood information using message paramter.
+        /// </summary>
         [TestMethod]
         public void GivenMoodAnalyserObject_InvokeAnalyzeMoodInfo_UsingMessageParamter()
         {
@@ -164,6 +181,10 @@ namespace MoodAnalyzerTest1
                 Assert.AreEqual(MoodAnalyserCustomException.ExceptionType.NO_SUCH_METHODS, e.type);
             }
         }
+        /// <summary>
+        /// Givens the happy message invoke analyze mood method using message paramter.
+        /// </summary>
+        [TestMethod]
         public void GivenHappyMessage_InvokeAnalyzeMoodMethod_UsingMessageParamter()
         {
             string expected = "Happy";
@@ -182,6 +203,10 @@ namespace MoodAnalyzerTest1
                 Assert.AreEqual(MoodAnalyserCustomException.ExceptionType.NO_SUCH_METHODS, e.type);
             }
         }
+        /// <summary>
+        /// Givens the name of the happy message invoke analyze mood method using wrong method.
+        /// </summary>
+        [TestMethod]
         public void GivenHappyMessage_InvokeAnalyzeMoodMethod_UsingWrongMethodName()
         {
             string expected = "Happy";
@@ -200,6 +225,79 @@ namespace MoodAnalyzerTest1
                 Assert.AreEqual(MoodAnalyserCustomException.ExceptionType.NO_SUCH_METHODS, e.type);
             }
         }
+
+
+        /// <summary>
+        /// Givens the happy message set field value using invoke method.
+        /// </summary>
+        [TestMethod]
+        public void GivenHappyMessage_SetFieldValue_UsingInvokeMethod()
+        {
+            string expected = "Happy";
+            string actual ;
+            string input_Message = "Happy";
+            string class_Name = "MoodAnalyzerApp";
+            string method_Name = "WrongAnalyse_Mood";
+            string field_Name = "message";
+            string constructor_Name = "MoodAnalyzerApp";
+            try
+            {
+                actual = MoodAnalyzerFactory.SetFields_And_InvokingAnalyseMood(input_Message, field_Name);
+                Assert.AreEqual(expected, actual);
+            }
+            catch (MoodAnalyserCustomException e)
+            {
+                Assert.AreEqual(MoodAnalyserCustomException.ExceptionType.NO_SUCH_METHODS, e.type);
+            }
+        }
+
+        /// <summary>
+        /// Givens the wrong field name set field value using field information.
+        /// </summary>
+        [TestMethod]
+        public void GivenWrongFieldName_SetFieldValue_UsingFieldInfo()
+        {
+            string expected = "Happy";
+            string actual = "";
+            string input_Message = "Happy";
+            string class_Name = "MoodAnalyzerApp";
+            string method_Name = "WrongAnalyse_Mood";
+            string field_Name = "WrongMessageField";
+            string constructor_Name = "MoodAnalyzerApp";
+            try
+            {
+                actual = MoodAnalyzerFactory.SetFields_And_InvokingAnalyseMood(input_Message, field_Name);
+                Assert.AreEqual(expected, actual);
+            }
+            catch (MoodAnalyserCustomException e)
+            {
+                Assert.AreEqual(MoodAnalyserCustomException.ExceptionType.NO_SUCH_FIELDS, e.type);
+            }
+        }
+
+        
+        [TestMethod]
+        public void GivenEmptyFieldInput_SetFieldValue_UsingFieldInfo()
+        {
+            string expected = "Happy";
+            string actual = "";
+            string input_Message = "I am kinda Sad";
+            string class_Name = "MoodAnalyzerApp";
+            string method_Name = "WrongAnalyse_Mood";
+            string field_Name = "";
+            string constructor_Name = "MoodAnalyzerApp";
+            try
+            {
+                actual = MoodAnalyzerFactory.SetFields_And_InvokingAnalyseMood(input_Message, field_Name);
+                Assert.AreEqual(expected, actual);
+            }
+            catch (MoodAnalyserCustomException e)
+            {
+                Assert.AreEqual(MoodAnalyserCustomException.ExceptionType.NO_SUCH_FIELDS, e.type);
+            }
+        }
+
+
 
 
     }
