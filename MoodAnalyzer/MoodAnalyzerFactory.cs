@@ -91,10 +91,10 @@ namespace MoodAnalyzer
         {
             try
             {
-
+                //Using Reflection class GetType
                 Type type = Type.GetType("MoodAnalyzer." + class_Name);
-                //ConstructorInfo get_Constructor_Name = type.GetConstructor();
 
+                //if custructor name and type name matches with actual class type
                 if (class_Name.Equals(type.Name) && class_Name.Equals(constructor_Name))
                 {
                     MoodAnalyzerApp new_Obj = (MoodAnalyzerApp)Activator.CreateInstance(type);
